@@ -1,0 +1,16 @@
+[remap]
+
+importer="MagicaVoxel.With.Extensions"
+type="Mesh"
+path="res://.import/BlueShirt.vox-cb2fdba0490906b279fab29de6fd5f3e.mesh"
+
+[deps]
+
+source_file="res://VoxAssets/Clothing/BlueShirt.vox"
+dest_files=[ "res://.import/BlueShirt.vox-cb2fdba0490906b279fab29de6fd5f3e.mesh" ]
+
+[params]
+
+Scale=0.3
+GreedyMeshGenerator=true
+SnapToGround=true

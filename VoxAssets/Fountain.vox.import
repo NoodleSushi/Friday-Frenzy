@@ -1,0 +1,16 @@
+[remap]
+
+importer="MagicaVoxel.With.Extensions"
+type="Mesh"
+path="res://.import/Fountain.vox-54375ccdcf641dc6a89f350ca3436a43.mesh"
+
+[deps]
+
+source_file="res://VoxAssets/Fountain.vox"
+dest_files=[ "res://.import/Fountain.vox-54375ccdcf641dc6a89f350ca3436a43.mesh" ]
+
+[params]
+
+Scale=0.5
+GreedyMeshGenerator=true
+SnapToGround=true

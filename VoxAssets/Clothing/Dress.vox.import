@@ -1,0 +1,16 @@
+[remap]
+
+importer="MagicaVoxel.With.Extensions"
+type="Mesh"
+path="res://.import/Dress.vox-095f830a8e10fad039e24442af1e7a68.mesh"
+
+[deps]
+
+source_file="res://VoxAssets/Clothing/Dress.vox"
+dest_files=[ "res://.import/Dress.vox-095f830a8e10fad039e24442af1e7a68.mesh" ]
+
+[params]
+
+Scale=0.3
+GreedyMeshGenerator=true
+SnapToGround=true

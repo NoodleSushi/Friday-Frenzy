@@ -1,0 +1,16 @@
+[remap]
+
+importer="MagicaVoxel.With.Extensions"
+type="Mesh"
+path="res://.import/StorageOranges.vox-39014515bf54dc167161e6cd628b660b.mesh"
+
+[deps]
+
+source_file="res://VoxAssets/Market/StorageOranges.vox"
+dest_files=[ "res://.import/StorageOranges.vox-39014515bf54dc167161e6cd628b660b.mesh" ]
+
+[params]
+
+Scale=0.3
+GreedyMeshGenerator=true
+SnapToGround=true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="MagicaVoxel.With.Extensions"
+type="Mesh"
+path="res://.import/StorageFlatScreenTV.vox-37961e971e30ff0ab190246d5c2b3063.mesh"
+
+[deps]
+
+source_file="res://VoxAssets/IT/StorageFlatScreenTV.vox"
+dest_files=[ "res://.import/StorageFlatScreenTV.vox-37961e971e30ff0ab190246d5c2b3063.mesh" ]
+
+[params]
+
+Scale=0.3
+GreedyMeshGenerator=true
+SnapToGround=true

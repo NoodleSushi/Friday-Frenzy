@@ -1,0 +1,16 @@
+[remap]
+
+importer="MagicaVoxel.With.Extensions"
+type="Mesh"
+path="res://.import/StorageMonitor.vox-7325dfb30f21e1ffdb7c29e9957f3e87.mesh"
+
+[deps]
+
+source_file="res://VoxAssets/IT/StorageMonitor.vox"
+dest_files=[ "res://.import/StorageMonitor.vox-7325dfb30f21e1ffdb7c29e9957f3e87.mesh" ]
+
+[params]
+
+Scale=0.3
+GreedyMeshGenerator=true
+SnapToGround=true

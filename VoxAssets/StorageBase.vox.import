@@ -1,0 +1,16 @@
+[remap]
+
+importer="MagicaVoxel.With.Extensions"
+type="Mesh"
+path="res://.import/StorageBase.vox-c5b542a94353aca5c99a1ab2ed00cbc8.mesh"
+
+[deps]
+
+source_file="res://VoxAssets/StorageBase.vox"
+dest_files=[ "res://.import/StorageBase.vox-c5b542a94353aca5c99a1ab2ed00cbc8.mesh" ]
+
+[params]
+
+Scale=0.1
+GreedyMeshGenerator=true
+SnapToGround=false

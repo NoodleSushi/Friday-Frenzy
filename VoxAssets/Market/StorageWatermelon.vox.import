@@ -1,0 +1,16 @@
+[remap]
+
+importer="MagicaVoxel.With.Extensions"
+type="Mesh"
+path="res://.import/StorageWatermelon.vox-0876d395ea941711f56be1a2ced0d402.mesh"
+
+[deps]
+
+source_file="res://VoxAssets/Market/StorageWatermelon.vox"
+dest_files=[ "res://.import/StorageWatermelon.vox-0876d395ea941711f56be1a2ced0d402.mesh" ]
+
+[params]
+
+Scale=0.3
+GreedyMeshGenerator=true
+SnapToGround=true

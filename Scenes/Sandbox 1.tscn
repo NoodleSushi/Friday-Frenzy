@@ -1,0 +1,918 @@
+[gd_scene load_steps=44 format=2]
+
+[ext_resource path="res://Scripts/StoreManager.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/NotepadGUI.gd" type="Script" id=2]
+[ext_resource path="res://Textures/StoreLine.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/ampersand.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Fonts/FFFFORWA.TTF" type="DynamicFontData" id=5]
+[ext_resource path="res://Objects/Isle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Entities/Citizen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/Teleporter.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Textures/List.png" type="Texture" id=10]
+[ext_resource path="res://Textures/tiles.png" type="Texture" id=11]
+[ext_resource path="res://VoxAssets/Fountain.vox" type="ArrayMesh" id=12]
+[ext_resource path="res://VoxAssets/StoreBase.vox" type="ArrayMesh" id=13]
+[ext_resource path="res://Audio/PageFlip.wav" type="AudioStream" id=14]
+[ext_resource path="res://Audio/radop.ogg" type="AudioStream" id=15]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 3.25, 0.75, 3.25 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2.25, 0.75, 2.25 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.25, 0.5, 1.25 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 0.5, 1, 1 )
+uv1_offset = Vector3( 0.25, 0, 0 )
+
+[sub_resource type="QuadMesh" id=5]
+size = Vector2( 60, 10 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_unshaded = true
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 0.25, 1, 1 )
+
+[sub_resource type="QuadMesh" id=7]
+size = Vector2( 30, 10 )
+
+[sub_resource type="SpatialMaterial" id=8]
+flags_unshaded = true
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 0.25, 1, 1 )
+uv1_offset = Vector3( 0.75, 0, 0 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 30, 1, 15 )
+
+[sub_resource type="PlaneMesh" id=10]
+size = Vector2( 60, 30 )
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_texture = ExtResource( 11 )
+metallic_specular = 0.0
+uv1_scale = Vector3( 30, 15, 1 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 30, 8, 1 )
+
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 17, 8, 1 )
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 3, 1, 0.2 )
+
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 15, 1, 10 )
+
+[sub_resource type="BoxShape" id=17]
+extents = Vector3( 5, 1, 10 )
+
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 5, 1, 15 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 24
+extra_spacing_bottom = -4
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=20]
+size = 32
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Shader" id=21]
+code = "shader_type canvas_item;
+
+uniform float amount : hint_range(0,5);
+
+void fragment() {
+
+	COLOR.rgb = textureLod(SCREEN_TEXTURE,SCREEN_UV,amount).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 21 )
+shader_param/amount = 2.5
+
+[sub_resource type="DynamicFontData" id=23]
+font_path = "res://Fonts/FFFFORWA.TTF"
+
+[sub_resource type="DynamicFont" id=24]
+size = 80
+outline_size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 23 )
+
+[sub_resource type="DynamicFont" id=25]
+size = 24
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 23 )
+
+[sub_resource type="Animation" id=26]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Blur:material:shader_param/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Game:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Blur:material:shader_param/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2.5, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Game/TextureRect:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.4 ),
+"transitions": PoolRealArray( 0.25, 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -345.385 ), Vector2( 0, -345.385 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Game:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.0743255, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=28]
+size = 45
+outline_size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 23 )
+
+[node name="Main" type="Spatial"]
+
+[node name="World" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="World"]
+transform = Transform( 0.866025, -0.433013, 0.25, -0.482963, -0.595035, 0.642402, -0.12941, -0.677077, -0.724445, 0, 10, 0 )
+light_energy = 0.7
+shadow_enabled = true
+shadow_color = Color( 0.345098, 0.345098, 0.345098, 1 )
+shadow_bias = 0.0
+
+[node name="Fountain" type="MeshInstance" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4.755 )
+mesh = ExtResource( 12 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="World/Fountain"]
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Fountain/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.750088, -0.25 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="World/Fountain/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 2.25, -0.25 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="World/Fountain/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 3.5, -0.25 )
+shape = SubResource( 3 )
+
+[node name="BG" type="MeshInstance" parent="World"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 6, 10 )
+material_override = SubResource( 4 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="BG2" type="MeshInstance" parent="World"]
+transform = Transform( 3.69552e-07, 0, -1, 0, 1, 0, 1, 0, 3.69552e-07, 30, 6, -5 )
+material_override = SubResource( 6 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="BG3" type="MeshInstance" parent="World"]
+transform = Transform( -4.56975e-07, 0, 1, 0, 1, 0, -1, 0, -4.56975e-07, -30, 6, -5 )
+material_override = SubResource( 8 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="Floors" type="Spatial" parent="World"]
+
+[node name="StaticBody" type="StaticBody" parent="World/Floors"]
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Floors/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
+shape = SubResource( 9 )
+
+[node name="Floor" type="MeshInstance" parent="World/Floors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5 )
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+
+[node name="Walls" type="StaticBody" parent="World"]
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 11 )
+shape = SubResource( 12 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="World/Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -21 )
+shape = SubResource( 12 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="World/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -31, 9, -5 )
+shape = SubResource( 13 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="World/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 31, 9, -5 )
+shape = SubResource( 13 )
+
+[node name="Entities" type="Spatial" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17 )
+
+[node name="Citizen" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 7 )
+
+[node name="Citizen2" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 7 )
+
+[node name="Citizen3" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 3 )
+
+[node name="Citizen10" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -1 )
+
+[node name="Citizen11" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -5 )
+
+[node name="Citizen12" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -9 )
+
+[node name="Citizen13" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -13 )
+
+[node name="Citizen14" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -17 )
+
+[node name="Citizen4" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, 3 )
+
+[node name="Citizen5" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -1 )
+
+[node name="Citizen6" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -5 )
+
+[node name="Citizen7" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -9 )
+
+[node name="Citizen8" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -13 )
+
+[node name="Citizen9" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -17 )
+
+[node name="Citizen15" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 7 )
+
+[node name="Citizen16" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 7 )
+
+[node name="Citizen17" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 3 )
+
+[node name="Citizen18" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -1 )
+
+[node name="Citizen19" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -5 )
+
+[node name="Citizen20" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -9 )
+
+[node name="Citizen21" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -13 )
+
+[node name="Citizen22" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -17 )
+
+[node name="Citizen23" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 3 )
+
+[node name="Citizen24" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -1 )
+
+[node name="Citizen25" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -5 )
+
+[node name="Citizen26" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -9 )
+
+[node name="Citizen27" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -13 )
+
+[node name="Citizen28" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -17 )
+
+[node name="Citizen29" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 7 )
+
+[node name="Citizen30" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7 )
+
+[node name="Citizen31" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3 )
+
+[node name="Citizen85" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3 )
+
+[node name="Citizen86" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3 )
+
+[node name="Citizen87" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3 )
+
+[node name="Citizen88" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7 )
+
+[node name="Citizen89" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7 )
+
+[node name="Citizen90" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -13 )
+
+[node name="Citizen91" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -13 )
+
+[node name="Citizen32" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1 )
+
+[node name="Citizen33" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -5 )
+
+[node name="Citizen34" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -9 )
+
+[node name="Citizen35" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -13 )
+
+[node name="Citizen36" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -17 )
+
+[node name="Citizen37" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 3 )
+
+[node name="Citizen38" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -1 )
+
+[node name="Citizen39" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -5 )
+
+[node name="Citizen40" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -9 )
+
+[node name="Citizen41" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -13 )
+
+[node name="Citizen42" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -17 )
+
+[node name="Citizen43" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 7 )
+
+[node name="Citizen44" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 7 )
+
+[node name="Citizen45" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 3 )
+
+[node name="Citizen46" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, -1 )
+
+[node name="Citizen47" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, -5 )
+
+[node name="Citizen48" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, -9 )
+
+[node name="Citizen49" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, -13 )
+
+[node name="Citizen50" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, -17 )
+
+[node name="Citizen51" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 3 )
+
+[node name="Citizen52" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -1 )
+
+[node name="Citizen53" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -5 )
+
+[node name="Citizen54" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -9 )
+
+[node name="Citizen55" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -13 )
+
+[node name="Citizen56" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -17 )
+
+[node name="Citizen57" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 7 )
+
+[node name="Citizen58" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 7 )
+
+[node name="Citizen59" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 3 )
+
+[node name="Citizen60" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -1 )
+
+[node name="Citizen61" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -5 )
+
+[node name="Citizen62" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -9 )
+
+[node name="Citizen63" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -13 )
+
+[node name="Citizen64" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -17 )
+
+[node name="Citizen65" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 3 )
+
+[node name="Citizen66" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -1 )
+
+[node name="Citizen67" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -5 )
+
+[node name="Citizen68" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -9 )
+
+[node name="Citizen69" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -13 )
+
+[node name="Citizen70" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -17 )
+
+[node name="Citizen71" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7 )
+
+[node name="Citizen72" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 7 )
+
+[node name="Citizen73" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 3 )
+
+[node name="Citizen74" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -1 )
+
+[node name="Citizen75" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -5 )
+
+[node name="Citizen76" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -9 )
+
+[node name="Citizen77" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -13 )
+
+[node name="Citizen78" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -17 )
+
+[node name="Citizen79" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3 )
+
+[node name="Citizen80" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1 )
+
+[node name="Citizen81" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5 )
+
+[node name="Citizen82" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -9 )
+
+[node name="Citizen83" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -13 )
+
+[node name="Citizen84" parent="Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -17 )
+
+[node name="StoreManager" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64 )
+script = ExtResource( 1 )
+
+[node name="StoreBaseMesh" type="MeshInstance" parent="StoreManager"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.32, 0 )
+material_override = SubResource( 14 )
+mesh = ExtResource( 13 )
+material/0 = null
+
+[node name="Teleporters" type="Spatial" parent="StoreManager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -54.2 )
+
+[node name="TeleporterClothing" parent="StoreManager/Teleporters" instance=ExtResource( 8 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 29.8, 0, -18.548 )
+destination_path = NodePath("../../EntrancePosition")
+
+[node name="TeleporterMarket" parent="StoreManager/Teleporters" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.75, 0, 0 )
+destination_path = NodePath("../../EntrancePosition")
+
+[node name="TeleporterIT" parent="StoreManager/Teleporters" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.25, 0, 0 )
+destination_path = NodePath("../../EntrancePosition")
+
+[node name="TeleporterArcade" parent="StoreManager/Teleporters" instance=ExtResource( 8 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -39.8, 0, -11.0498 )
+destination_path = NodePath("../../EntrancePosition")
+
+[node name="TeleporterLobby" parent="StoreManager" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -9.8 )
+
+[node name="CollisionShape" parent="StoreManager/TeleporterLobby" index="0"]
+shape = SubResource( 15 )
+
+[node name="Colliders" type="StaticBody" parent="StoreManager"]
+
+[node name="CollisionShape" type="CollisionShape" parent="StoreManager/Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+shape = SubResource( 16 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StoreManager/Colliders"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -16, 5, 0 )
+shape = SubResource( 17 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="StoreManager/Colliders"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 16, 5, 0 )
+shape = SubResource( 17 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="StoreManager/Colliders"]
+transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 5, -11 )
+shape = SubResource( 18 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="StoreManager/Colliders"]
+transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 5, 11 )
+shape = SubResource( 18 )
+
+[node name="EntrancePosition" type="Position3D" parent="StoreManager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7, 0, -8 )
+
+[node name="ExitPositions" type="Spatial" parent="StoreManager"]
+
+[node name="ExitClothing" type="Position3D" parent="StoreManager/ExitPositions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, -65.25 )
+
+[node name="ExitMarket" type="Position3D" parent="StoreManager/ExitPositions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.25, 0, -55 )
+
+[node name="ExitIT" type="Position3D" parent="StoreManager/ExitPositions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.75, 0, -55 )
+
+[node name="ExitArcade" type="Position3D" parent="StoreManager/ExitPositions"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, -73 )
+
+[node name="Entities" type="Spatial" parent="StoreManager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4 )
+
+[node name="Citizen" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+
+[node name="Citizen2" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 0 )
+
+[node name="Citizen3" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 5 )
+
+[node name="Citizen4" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 5 )
+
+[node name="Citizen5" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 9 )
+
+[node name="Citizen6" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 9 )
+
+[node name="Citizen7" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 0 )
+
+[node name="Citizen8" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4, 0 )
+
+[node name="Citizen9" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 5 )
+
+[node name="Citizen10" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4, 5 )
+
+[node name="Citizen11" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 9 )
+
+[node name="Citizen12" parent="StoreManager/Entities" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4, 9 )
+
+[node name="Storages" type="Spatial" parent="StoreManager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.6 )
+
+[node name="Isle1" parent="StoreManager/Storages" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2 )
+
+[node name="Isle2" parent="StoreManager/Storages" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5 )
+
+[node name="Isle3" parent="StoreManager/Storages" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.545, 0, -4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Control"]
+one_shot = true
+
+[node name="Tween" type="Tween" parent="CanvasLayer/Control"]
+
+[node name="Game" type="Control" parent="CanvasLayer/Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Game"]
+margin_right = 192.0
+margin_bottom = 329.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Game/TextureRect"]
+margin_left = 15.1823
+margin_top = 39.8732
+margin_right = 157.182
+margin_bottom = 253.873
+custom_fonts/font = SubResource( 19 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "sdfasdf
+asdfasfd
+asdfasdfasdf
+asdfasdfasdfa
+sdfasdfasdfasd
+asdfasdfasdf
+fasdfasdfasdfa
+sdfasdfasdf
+asdfasdfasdf
+asdfasdfasdfasd"
+
+[node name="Countdown" type="Label" parent="CanvasLayer/Control/Game"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -100.5
+margin_right = 100.5
+margin_bottom = 87.0
+custom_fonts/font = SubResource( 20 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "00"
+align = 1
+valign = 1
+
+[node name="Menu" type="Control" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="CanvasLayer/Control/Menu"]
+copy_mode = 2
+
+[node name="Blur" type="ColorRect" parent="CanvasLayer/Control/Menu"]
+material = SubResource( 22 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/Menu"]
+anchor_right = 1.0
+margin_top = 57.9564
+margin_bottom = 280.956
+custom_fonts/font = SubResource( 24 )
+text = "Friday
+Frenzy"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Label" parent="CanvasLayer/Control/Menu"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = -182.0
+margin_right = 680.0
+margin_bottom = -19.0
+custom_fonts/font = SubResource( 25 )
+text = "Move: Left Joystick / Arrow Keys
+Grab Item: B Button / C Key
+Jump: A Button / SPACE Key"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions2" type="Label" parent="CanvasLayer/Control/Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -327.5
+margin_top = -81.5
+margin_right = 327.5
+margin_bottom = 81.5
+custom_fonts/font = SubResource( 25 )
+text = "Press the A Button / SPACE Key to Begin"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Menu"]
+anims/INIT = SubResource( 26 )
+anims/StartGame = SubResource( 27 )
+
+[node name="Congrats" type="Control" parent="CanvasLayer/Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="CanvasLayer/Control/Congrats"]
+copy_mode = 2
+
+[node name="Blur2" type="ColorRect" parent="CanvasLayer/Control/Congrats"]
+material = SubResource( 22 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title2" type="Label" parent="CanvasLayer/Control/Congrats"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 28 )
+text = "HEY YOU MADE IT!
+You finished in
+
+dfdf
+
+sdfsdfasdf"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PageFlip" type="AudioStreamPlayer" parent="CanvasLayer/Control"]
+stream = ExtResource( 14 )
+volume_db = -10.195
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -27.868
+autoplay = true
+bus = "New Bus"
+[connection signal="player_teleported" from="StoreManager/Teleporters/TeleporterClothing" to="StoreManager" method="_on_Teleporter_player_teleported" binds= [ 0 ]]
+[connection signal="player_teleported" from="StoreManager/Teleporters/TeleporterMarket" to="StoreManager" method="_on_Teleporter_player_teleported" binds= [ 1 ]]
+[connection signal="player_teleported" from="StoreManager/Teleporters/TeleporterIT" to="StoreManager" method="_on_Teleporter_player_teleported" binds= [ 2 ]]
+[connection signal="player_teleported" from="StoreManager/Teleporters/TeleporterArcade" to="StoreManager" method="_on_Teleporter_player_teleported" binds= [ 3 ]]
+[connection signal="player_teleported" from="StoreManager/TeleporterLobby" to="StoreManager" method="_on_TeleporterLobby_player_teleported"]
+
+[editable path="StoreManager/TeleporterLobby"]

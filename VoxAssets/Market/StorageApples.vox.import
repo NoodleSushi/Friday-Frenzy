@@ -1,0 +1,16 @@
+[remap]
+
+importer="MagicaVoxel.With.Extensions"
+type="Mesh"
+path="res://.import/StorageApples.vox-53f6cd2028a79bcfc4c83f3bd330a099.mesh"
+
+[deps]
+
+source_file="res://VoxAssets/Market/StorageApples.vox"
+dest_files=[ "res://.import/StorageApples.vox-53f6cd2028a79bcfc4c83f3bd330a099.mesh" ]
+
+[params]
+
+Scale=0.3
+GreedyMeshGenerator=true
+SnapToGround=true
