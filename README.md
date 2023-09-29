@@ -1,4 +1,4 @@
-# Friday-Frenzy
+# Friday Frenzy
 Shop 'til you drop in a mall sale frenzy!
 
 ![P5cdWh](https://github.com/NoodleSushi/Friday-Frenzy/assets/34954180/3c4be47e-5879-443b-bca3-53ff81d3647c)
