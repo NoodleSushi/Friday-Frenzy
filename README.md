@@ -8,3 +8,6 @@ Shop 'til you drop in a mall sale frenzy!
 
 # Project Setup
 Install the latest Godot Engine 3.2 release
+
+# Credits
+- [MagicaVoxel Importer with Extensions addon by CloneDeath](https://github.com/CloneDeath/MagicaVoxel-Importer-with-Extensions).
